@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><h2>{{bitkiCayi.adi}}</h2></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+              <ion-item-divider>  <b>İçindekiler</b></ion-item-divider>
+            <ion-list>
+              <ion-item *ngFor="let ic of bitkiCayi.icindekiler">
+                {{
+                  ic.adi
+                }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    <ion-row>
+      <ion-col>
+         
+          <ion-item-divider> <b>Yapılışı</b></ion-item-divider>
+        <h2>{{bitkiCayi.yapilisi}}</h2>
+        <h3>Günde {{bitkiCayi.suresi}}/{{bitkiCayi.miktari}} demlenir. </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-item-divider> <b>Tüketilmesi ile elde edilecek faydalar</b></ion-item-divider>
+       
+        <h2>{{bitkiCayi.faydasi}}</h2>
+      </ion-col>
+    </ion-row>
+   
+    <ion-row *ngIf="bitkiCayi.icindekiler.length>0">
+      <ion-col>
+        <button ion-button clear (click)="onAddIcindekiler()" >Malzemeleri Alışveriş listesine Ekle</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline block (click)="onEditTarif()">Tarifi Güncelle</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <button ion-button outline block (click)="onDeleteTarif()" color="danger">Tarifi Sil</button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

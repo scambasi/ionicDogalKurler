@@ -1,0 +1,11 @@
+page-resimli-bitki-cayi-ekle {
+    .block{
+        position: relative;
+        .deleteIcon{
+            position: absolute;
+            margin-left:85%;
+            margin-top:5px;
+            color:#ffff;
+        }
+    }
+}

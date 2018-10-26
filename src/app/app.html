@@ -1,0 +1,41 @@
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button
+              ion-item
+              icon-left
+              (click)="onLoad(rootPage)">
+              <ion-icon name="add"></ion-icon>
+              Resimli Bitki Çayı Ekle
+            </button>
+            <button
+              ion-item
+              icon-left [root]="resimliBitkiCayiListPage"
+              (click)="onLoad(rootPage)">
+              <ion-icon name="images"></ion-icon>
+              Resimli Bitki Çayları
+            </button>
+            <button
+            ion-item
+            icon-left
+            (click)="onLoad(rootPage)">
+            <ion-icon name="mic"></ion-icon>
+            Sesli Bitki Çayı Ekle
+          </button>
+          <button
+          ion-item
+          icon-left
+          (click)="onLoad(rootPage)">
+          <ion-icon name="list"></ion-icon>
+          Sesli Bitki Çayları
+        </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #nav></ion-nav>

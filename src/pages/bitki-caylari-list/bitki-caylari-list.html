@@ -1,0 +1,51 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  <ion-buttons end>
+    <button ion-button icon-only (click)="onNewTarif()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <!-- <button ion-button icon-only (click)="onShowOptions($event)">
+      <ion-icon name="more"></ion-icon>
+    </button> -->
+  </ion-buttons>
+  <ion-title>Bitki Çayları</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ 
+  
+    <ion-list>
+      <ion-row>
+        <ion-col col-11>
+            <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+        </ion-col>
+        <ion-col col-1>
+            <button ion-button small icon-only (click)="sort()"><ion-icon name="funnel"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+            <ion-refresher (ionRefresh)="getBitkiCaylari($event)">
+                <ion-refresher-content></ion-refresher-content>
+              </ion-refresher>
+            
+              <button ion-item *ngFor="let bc of bitkiCaylari | search : terms | sort: {property: column, order: order}"    (click)="onLoadTarif(bc,bc.id)">
+                <h2>{{bc.adi}}</h2>
+            <ion-note>{{bc.yapilisi}}</ion-note>
+              </button>
+          
+        </ion-col>
+      </ion-row>
+       
+      </ion-list>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Bitki Çayları {{mode}} </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="bitkiCaylariForm" (ngSubmit)="onSubmit()">
+      
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Bitki Çayı Adı</ion-label>
+        <ion-input type="text" formControlName="adi"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating> Yapılışı</ion-label>
+        <ion-textarea formControlName="yapilisi"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Demlenme Süresi(dk)</ion-label>
+        <ion-textarea formControlName="suresi"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Tüketim Miktarı(Günde)</ion-label>
+        <ion-textarea formControlName="miktari"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Tüketilince Elde Edilecek Faydalar</ion-label>
+        <ion-textarea formControlName="faydasi"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <button type="button" clear ion-button block (click)="onManageIngredients()" >içindekiler</button>
+    <button type="button" clear ion-button block (click)="onManageEkler()">Eklentiler</button>
+    <ion-list formArrayName="icindekiler">
+      <ion-item *ngFor="let igControl  of bitkiCaylariForm.get('icindekiler').controls;let i=index">
+        <ion-label floating>içindekiler</ion-label>
+        <ion-input type="text" [formControlName]="i"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let photo of photos;let id=index">
+          <ion-card class="block">
+            <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+            <img src="{{photo}}" *ngIf="photo"/>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+     
+    </ion-grid>
+    <button type="submit" ion-button block [disabled]="!bitkiCaylariForm.valid">Tarif {{mode}}</button>
+  </form>
+</ion-content>

@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="yeniBitkiCayi()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-buttons>
+    <ion-title>Resimli Bitki Çaylarım</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+      <ion-card *ngFor="let bitkicayi of bitkiCaylari; let i = index"
+      (click)="yukleBitkiCayi(bitkicayi, i)">
+    
+          <ion-card-content text-center>
+            <ion-card-title>
+              {{ bitkicayi.adi }}
+            </ion-card-title>
+            <p>{{ bitkicayi.aciklama }}</p>
+          </ion-card-content>
+        </ion-card>
+</ion-content>

@@ -1,0 +1,54 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>Sesli Bitki Çayı Ekle</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="bitkiCayiForm" (ngSubmit)="onSubmit()">
+        <ion-card>
+            <ion-card-content>
+              <ion-card-title>
+                <button ion-button light (click)="stopRecord()" *ngIf="recording">Kayıt Yapılıyor!!!<ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Kayıt Durdur</button>
+                <button ion-button dark (click)="startRecord()" *ngIf="!recording"><ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Kayıt Başlat</button>
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+          <ion-list>
+            <ion-item *ngFor="let audio of audioList; index as i;">
+              <p>{{audio.filename}}</p>
+              <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Bitki Çayı Adı</ion-label>
+              <ion-input type="text" formControlName="adi"  required>
+        
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Bitki Çayı Faydaları</ion-label>
+              <ion-textarea formControlName="aciklama"  required></ion-textarea>
+            </ion-item>
+          </ion-list>
+ 
+  <ion-row>
+      <ion-col>
+        <button
+        type="submit"
+        ion-button
+        secondary
+        block
+        [disabled]="!bitkiCayiForm.valid">Ekle Bitki Çayı</button>
+      </ion-col>
+    </ion-row>
+    </form>
+</ion-content>

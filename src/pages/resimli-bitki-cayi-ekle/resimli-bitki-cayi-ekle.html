@@ -1,0 +1,62 @@
+
+<ion-header>
+   
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>Bitki Çayı {{ mode }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="bitkiCayiForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+        <ion-item>
+          <ion-label floating>Bitki Çayı Adı</ion-label>
+          <ion-input type="text" formControlName="adi"  required>
+    
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Bitki Çayı Faydaları</ion-label>
+          <ion-textarea formControlName="aciklama"  required></ion-textarea>
+        </ion-item>
+      </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let photo of photos;let id=index">
+        <ion-card class="block">
+          <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+          <img src="{{photo}}" *ngIf="photo"/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <button ion-button block outline type="button" icon-left (click)="takePhoto()">
+                <ion-icon name="camera"></ion-icon>Fotoğraf Çek</button>
+        </ion-col>
+        <!-- <ion-col>
+            <button ion-button block outline type="button" icon-left (click)="takePictureFromGallery()">
+                <ion-icon name="albums"></ion-icon>Fotoğraf Seç</button>
+        </ion-col> -->
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <button
+          type="submit"
+          ion-button
+          block
+          [disabled]="!bitkiCayiForm.valid">{{ mode }} Bitki Çayı</button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+    </form>
+</ion-content>

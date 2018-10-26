@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+  <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="bitkiCayiYeni()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-title>{{ bitkicayi.adi }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+       <ion-row>
+        <ion-list>
+          <ion-item *ngFor="let audio of bitkicayi.sesler; index as i;">
+            <p>{{audio.filename}}</p>
+            <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
+          </ion-item>
+        </ion-list>
+      </ion-row> 
+      <ion-row>
+        <ion-col>
+          <p>{{ bitkicayi.aciklama }}</p>
+        </ion-col>
+      </ion-row>
+     
+      <ion-row>
+        <ion-col>
+          <button
+            ion-button
+            block
+            (click)="bitkiCayiEkraniKapat()">Kapat</button>
+        </ion-col>
+        <ion-col>
+          <button
+            ion-button
+            block
+            color="danger"
+            (click)="bitkiCayiSil()">Sil</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
